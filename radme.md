@@ -164,6 +164,7 @@ class Client(models.Model):
     )
 ```
 + When 
+
 A When() object is used to encapsulate a condition and its result for use in the conditional expression. Using a When() object is similar to using the filter() method
 ```python 
 from django.db.models import F, Q, When
