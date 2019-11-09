@@ -130,3 +130,45 @@ Entry.objects.all()[:5]
 ```
 
 ####  [field-lookup](https://docs.djangoproject.com/en/2.2/ref/models/querysets/#field-lookups)
+
+This is basically how the SQL query would relate to.
+
++ **RegeX**
+```python 
+
+Entry.objects.get(title__regex=r'^(An?|The) +')
+
+```
+
+#### Conditional expressions
+
+eg :
+```python 
+from django.db import models
+
+class Client(models.Model):
+    REGULAR = 'R'
+    GOLD = 'G'
+    PLATINUM = 'P'
+    ACCOUNT_TYPE_CHOICES = [
+        (REGULAR, 'Regular'),
+        (GOLD, 'Gold'),
+        (PLATINUM, 'Platinum'),
+    ]
+    name = models.CharField(max_length=50)
+    registered_on = models.DateField()
+    account_type = models.CharField(
+        max_length=1,
+        choices=ACCOUNT_TYPE_CHOICES,
+        default=REGULAR,
+    )
+```
++ When 
+A When() object is used to encapsulate a condition and its result for use in the conditional expression. Using a When() object is similar to using the filter() method
+```python 
+from django.db.models import F, Q, When
+>>> # String arguments refer to fields; the following two examples are equivalent:
+>>> When(account_type=Client.GOLD, then='name')
+>>> When(account_type=Client.GOLD, then=F('name'))
+>>> # You can use field lookups in the condition
+```
