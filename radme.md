@@ -204,3 +204,22 @@ A string representing the scheme of the request (http or https usually).
 - SERVER_NAME – The hostname of the server.
 - SERVER_PORT – The port of the server (as a string).
 
+####  ShcemaEditor 
+
+### METHODS 
+
++ execute()¶
+
+BaseDatabaseSchemaEditor.execute(sql, params=[])
+
+Executes the SQL statement passed in, with parameters if supplied. This is a simple wrapper around the normal database cursors that allows capture of the SQL to a .sql file if the user wishes.
+
++ create_model()
+
+Creates a new table in the database for the provided model, along with any unique constraints or indexes it requires.
+
++ delete_model()
+
+Drops the model’s table in the database along with any unique constraints or indexes it has.
+
+- for other field type  [field](https://docs.djangoproject.com/en/2.2/ref/schema-editor/#add-field)
