@@ -165,11 +165,42 @@ class Client(models.Model):
 ```
 + When 
 
-A When() object is used to encapsulate a condition and its result for use in the conditional expression. Using a When() object is similar to using the filter() method
+A When() object is used to encapsulate a condition and its result for use in the conditional expression. Using a When() object is similar to using the filter() method. The condition can be specified using field lookups or Q objects. The result is provided using the then keyword.
+
 ```python 
 from django.db.models import F, Q, When
 >>> # String arguments refer to fields; the following two examples are equivalent:
->>> When(account_type=Client.GOLD, then='name')
+>>> When(account_type=Client.GOLD, then='name') # then is the break through or result part.
 >>> When(account_type=Client.GOLD, then=F('name'))
 >>> # You can use field lookups in the condition
 ```
+
+
+#### httpRequest object 
+
++ httpRequest.scheme
+
+
+A string representing the scheme of the request (http or https usually).
+
+ + HttpRequest.META¶
+
+    A dictionary containing all available HTTP headers. Available headers depend on the client and server, but here are some examples
+
+            
+- CONTENT_LENGTH – The length of the request body (as a string).
+- CONTENT_TYPE – The MIME type of the request body.
+- HTTP_ACCEPT – Acceptable content types for the response.
+- HTTP_ACCEPT_ENCODING – Acceptable encodings for the response.
+- HTTP_ACCEPT_LANGUAGE – Acceptable languages for the response.
+- HTTP_HOST – The HTTP Host header sent by the client.
+- HTTP_REFERER – The referring page, if any.
+- HTTP_USER_AGENT – The client’s user-agent string.
+- QUERY_STRING – The query string, as a single (unparsed) string.
+- REMOTE_ADDR – The IP address of the client.
+- REMOTE_HOST – The hostname of the client.
+- REMOTE_USER – The user authenticated by the Web server, if any.
+- REQUEST_METHOD – A string such as "GET" or "POST".
+- SERVER_NAME – The hostname of the server.
+- SERVER_PORT – The port of the server (as a string).
+
